@@ -14,6 +14,7 @@ function Login() {
     console.log(values);
     dispatch(login(values));
     navigate("/packages");
+    localStorage.setItem("name", values.fullName)
 
   };
   // useEffect(() => {
@@ -24,6 +25,7 @@ function Login() {
     <Form
     name="normal_login"
     className="login-form"
+    layout="vertical"
     initialValues={{
       remember: true,
     }}
@@ -32,26 +34,25 @@ function Login() {
   >
     <Form.Item
       name="fullName"
-      label= "Adınız Soyadınız"
+      label= "Name Surname"
       rules={[{ required: true, message: "Please input your fullname!" }]}
     >
-      <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Adınız Soyadınız" />
+      <Input prefix={<UserOutlined className="site-form-item-icon" />} />
     </Form.Item>
     <Form.Item
       name="email"
-      label= "Email Adresiniz"
+      label= "E-mail Address"
       rules={[{ required: true, message: "Please input your email!" }]}
     >
       <Input
         prefix={<MailOutlined className="site-form-item-icon" />}
         type="mail"
-        placeholder="Email Adresiniz"
       />
     </Form.Item>
 
     <Form.Item>
       <Button type="primary" htmlType="submit" className="login-form-button">
-        Devam et
+       Go on
       </Button>
     </Form.Item>
   </Form>

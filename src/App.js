@@ -3,15 +3,21 @@ import { Layout } from "antd";
 import "./App.css";
 import Login from "./components/Login";
 import Packages from "./components/Packages";
+import Payment from "./components/Payment";
+import ResultPage from "./components/ResultPage";
 
 function App() {
   const { Header, Content, Footer } = Layout;
   return (
     <Layout className="layout">
-      <Content >
+      <Content style={{ backgroundColor: "#bfbfbf",}} >
+     
         <Routes>
           <Route path="/" element={<Login />} />
+
           <Route path="/packages" element={<Packages />} />
+          <Route path='/payment' element={<Payment  />} />
+          <Route path='/success' element={<ResultPage  />} />
         </Routes>
       </Content>
       <Footer style={{ textAlign: "center", marginBottom: "-50%" }}>
