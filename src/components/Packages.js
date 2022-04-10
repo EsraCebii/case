@@ -20,8 +20,11 @@ function Packages() {
   const { Meta } = Card;
   const dispatch = useDispatch();
   const packages = useSelector((state) => state.package.data);
-  console.log(packages);
-  const [selectedPackages, setSelectedPackages] =useState([]);
+  const selectedPackages = useSelector((state) => state.package.selectedPackages);
+  console.log(selectedPackages);
+
+  const totalAmount = selectedPackages.map(item => item.amount)
+  console.log(totalAmount)
 
   useEffect(() => {
     dispatch(getPackages());

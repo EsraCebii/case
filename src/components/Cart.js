@@ -1,34 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import {  Button, Card, List} from 'antd'
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
 function Agreement() {
   const [data, setData] = useState([]);
-  
-  const appendData = () => {
-    fetch('https://randomuser.me/api/?results=10&inc=name,gender,email,nat,picture&noinfo')
-    .then(res => res.json())
-    .then(body => {
-      setData([...data, ...body.results]);
-    })
-  };
+  const dispatch = useDispatch();
+  const selectedPackages = useSelector((state) => state.package.selectedPackages);
 
-  useEffect(() => {
-    appendData();
-  }, []);
+  
   return (
     <Card style={{ width: 500 , marginTop: 100}}>
     <h4>Products in the Cart</h4>
     <Card>
     <List
-          dataSource={data}
+          dataSource={selectedPackages}
           renderItem={item => (
             <List.Item key={item.id}>
               <List.Item.Meta
-                title={item.name.last}
-                description={item.email}
+                title={item.name}
               />
-              <div>Content</div>
+              <div>{item.amount} TL</div>
             </List.Item>
           )}
         />

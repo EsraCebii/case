@@ -9,12 +9,9 @@ function Payment() {
     <div>
           <AppHeader />
           <Row  >
-              <Col span={10} style={{ marginLeft: "5%"}}>
+              
              <CardInformation />
-              </Col>
-              <Col  span={6}style={{  marginLeft: "15%"}}>
-              <Cart />
-              </Col>
+             
           </Row>
     </div>
   )
