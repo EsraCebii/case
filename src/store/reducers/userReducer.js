@@ -1,6 +1,7 @@
 const INITIAL_STATE = {
-    fullName: "",
-    email: "",
+    data: [],
+    loading: false,
+    error: "",
 };
 
  const userReducer = (state =INITIAL_STATE, action) => {
