@@ -9,6 +9,7 @@ function Agreement({form}) {
   const navigate = useNavigate();
   const selectedPackages = useSelector((state) => state.package.selectedPackages);
  const handlePay = () => {
+   console.log(form)
    dispatch(pay(form))
    navigate("/success")
  }

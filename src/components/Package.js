@@ -1,16 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, {useState } from "react";
 import {
   Row,
   Col,
   Card,
   Badge,
-  Avatar,
   Divider,
-  List,
-  Typography,
-  Button,
 } from "antd";
-import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addSeletedPackage, deleteSeletedPackage, getPackages } from "../store/actions/packageAction";
 
