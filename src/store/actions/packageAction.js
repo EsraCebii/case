@@ -9,3 +9,12 @@ export const getPackages = () => async (dispatch) => {
       dispatch({ type: "GET_PACKAGES_ERROR" });
     }
   };
+  export const addSeletedPackage = (selectedPackage) => async (dispatch) => {
+
+      dispatch({ type: "ADD_SELECTED_PACKAGE", payload: selectedPackage });
+    
+  };
+  export const deleteSeletedPackage = (id) => async (dispatch) => {
+
+    dispatch({ type: "DELETE_SELECTED_PACKAGE", payload: id });
+};
