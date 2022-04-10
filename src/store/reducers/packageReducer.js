@@ -6,6 +6,7 @@ const INITIAL_STATE = {
   error: "",
   selectedPackages: [],
 };
+
 const packageReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case "GET_PACKAGES_START":

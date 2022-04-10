@@ -1,13 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import {  Button, Card, List} from 'antd'
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { pay } from '../store/actions/payAction';
 
-function Agreement() {
-  const [data, setData] = useState([]);
+function Agreement({form}) {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const selectedPackages = useSelector((state) => state.package.selectedPackages);
-
+ const handlePay = () => {
+   dispatch(pay(form))
+   navigate("/success")
+ }
   
   return (
     <Card style={{ width: 500 , marginTop: 100}}>
@@ -24,11 +28,9 @@ function Agreement() {
             </List.Item>
           )}
         />
-  <Link to="/success">
-      <Button type="primary" htmlType="submit" className="pay-button">
+      <Button type="primary" htmlType="submit" className="pay-button" onClick={handlePay}>
       Pay
       </Button>
-      </Link>
 
     </Card>
 

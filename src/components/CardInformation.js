@@ -7,10 +7,25 @@ import Cart from './Cart'
 function CardInformation() {
   const { Paragraph } = Typography;
   const [form, setForm] = useState({});
+  const [totalAmount, setTotalAmount] =useState(0)
+  const [selectedIDs, setSelectedIDs] = useState([]);
   const dispatch = useDispatch();
   const agreement = useSelector((state) => state.agreement.data);
   const selectedItems = useSelector((state) => state.selectedPackages);
-  
+
+  useEffect(() => {
+    let sum = 0;
+    for (let i = 0; i < selectedItems?.length; i++) {
+      sum += selectedItems[i].amount;
+    }
+    setTotalAmount(sum);
+    setForm({...form, totalAmount: totalAmount })
+    let packageIds = [...selectedIDs];
+    selectedItems?.map(item => {
+      packageIds.push(item.id)
+    })
+    setForm({...form, packageIds: packageIds })
+  }, [selectedItems])
   useEffect(() => {
     dispatch(getAgreement())
   }, [])
@@ -67,10 +82,10 @@ function CardInformation() {
   </Card>
   </Col>
    <Col  span={6}style={{  marginLeft: "15%"}}>
-   <Cart />
+   <Cart form={form}/>
    </Col>
    </>
   )
 }
 
-export default CardInformation
+export default CardInformation;

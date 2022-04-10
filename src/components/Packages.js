@@ -19,16 +19,24 @@ import Package from "./Package";
 function Packages() {
   const { Meta } = Card;
   const dispatch = useDispatch();
+  const [totalAmount, setTotalAmount] =useState(0)
   const packages = useSelector((state) => state.package.data);
   const selectedPackages = useSelector((state) => state.package.selectedPackages);
   console.log(selectedPackages);
 
-  const totalAmount = selectedPackages.map(item => item.amount)
-  console.log(totalAmount)
+
 
   useEffect(() => {
     dispatch(getPackages());
   }, []);
+  
+  useEffect(() => {
+    let sum = 0;
+    for (let i = 0; i < selectedPackages?.length; i++) {
+      sum += selectedPackages[i].amount;
+    }
+    setTotalAmount(sum);
+  }, [selectedPackages])
   return (
     <>
       <AppHeader />
@@ -42,14 +50,14 @@ function Packages() {
         }}
       >
         <Row gutter={16}>
-          {packages.map((item) => (
+          {packages?.map((item) => (
            <Package item={item} />
           ))}
         </Row>
         <Divider type="horizontal" />
         <Row justify="space-between">
           <Col span={12}>
-            <Typography>Selected package Amount:100tl</Typography>
+            <Typography>Selected package Amount: {totalAmount} TL</Typography>
           </Col>
           <Col span={4}>
             <Link to={`/payment/`}>
